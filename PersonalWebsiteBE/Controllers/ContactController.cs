@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonalWebsiteBE.Data;
 using PersonalWebsiteBE.Models;
+using PersonalWebsiteBE.DTOs;
 
 namespace PersonalWebsiteBE.Controllers
 {
@@ -16,9 +17,17 @@ namespace PersonalWebsiteBE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostMessage(Message message)
+        public async Task<IActionResult> PostMessage(CreateMessageDto dto)
         {
-            message.Fecha = DateTime.UtcNow;
+            var message = new Message
+            {
+                Nombres = dto.Nombres,
+                Apellidos = dto.Apellidos,
+                Email = dto.Email,
+                Telefono = dto.Telefono,
+                Mensaje = dto.Mensaje,
+                Fecha = DateTime.UtcNow
+            };
 
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
