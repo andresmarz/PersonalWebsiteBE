@@ -1,15 +1,21 @@
-﻿namespace PersonalWebsiteBE.DTOs
+﻿namespace PersonalWebsiteBE.DTOs;
+using System.ComponentModel.DataAnnotations;
+public class CreateMessageDto
 {
-    public class CreateMessageDto
-    {
-        public string Nombres { get; set; }
+    [Required]
+    public string Nombres { get; set; }
+    
+    [Required]
+    public string Apellidos { get; set; }
 
-        public string Apellidos { get; set; }
+    [Required]
+    public string Telefono { get; set; }
 
-        public string Email { get; set; }
+    [Required]
+    public string Email { get; set; }
 
-        public string Telefono { get; set; }
-
-        public string Mensaje { get; set; }
-    }
+    [Required]
+    [MaxLength(500)]
+    public string Mensaje { get; set; }  
+       
 }
